@@ -361,7 +361,7 @@ main(int argc, char **argv)
 
 	int i;
 
-	while ((opt = getopt(argc, argv, "vqnrik1eE:P:NTX:F:t:h?f:o:s:")) != -1) {
+	while ((opt = getopt(argc, argv, "vqnrik1eE:P:NTc:X:F:t:h?f:o:s:")) != -1) {
 		switch (opt) {
 		case 'v':
 			verbose = 2;
@@ -393,6 +393,19 @@ main(int argc, char **argv)
 			addrtype = 111;
 			privtype = 239;
 			scriptaddrtype = 196;
+			break;
+		case 'c':
+			if(!strcmp((optarg), "NEOS"))
+			{
+				addrtype = 0x35;
+				privtype = 0xB1;
+				scriptaddrtype = 0x05;
+			}
+			else
+			{
+				fprintf(stderr, "Unknown coin.\n");
+				return(1);
+			}
 			break;
 		case 'X':
 			addrtype = atoi(optarg);
